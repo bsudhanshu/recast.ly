@@ -4,10 +4,12 @@ var searchYouTube = (options, callback) => {
   $.ajax({
   	url: youtubeUrl,
   	type: 'GET',
-  	data: {key: options.key,
+  	data: {
+  		key: options.key,
   		  	maxResults: options.max,
 	  		  q: options.query,
-	  			part: 'snippet'},
+	  			part: 'snippet',
+	  		  type: 'video'},
   	videoEmbeddable: true,
   	contentType: 'application/json',
   	// videoType: 'any',
