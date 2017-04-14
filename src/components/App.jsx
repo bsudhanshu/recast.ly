@@ -14,11 +14,34 @@ class App extends React.Component {
 		})
 	}
 
+	setVideoData(event) {
+		console.log(event.target.value);
+		this.refillVideoData(event.target.value);
+	}
+
+	refillVideoData(string) {
+		var inputData = {
+			key: window.YOUTUBE_API_KEY,
+			max: 5,
+			query: string
+		}
+
+
+		window.searchYouTube(inputData,
+			(data) => {
+				console.log(data);
+				this.setState ({
+					videoData: data,
+					currentVideo: data[0]
+				})
+			});
+	}
+
 
 	render() {
 	  return (
 		  <div>
-		    <Nav />
+		    <Nav setVideo={this.setVideoData.bind(this)} input={this.state.input}/>
 		    <div className="col-md-7">
 		      <VideoPlayer video={this.state.currentVideo} />
 		    </div>
